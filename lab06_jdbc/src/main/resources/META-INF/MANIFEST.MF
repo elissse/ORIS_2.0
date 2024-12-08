@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Main-Class: 
+Class-Path: spring-context-support-6.2.0.jar spring-expression-5.0.0.REL
+ EASE.jar velocity-1.7.jar postgresql-42.6.0.jar commons-lang-2.4.jar sp
+ ring-jcl-6.2.0.jar spring-context-5.0.0.RELEASE.jar jackson-core-2.15.2
+ .jar spring-beans-6.2.0.jar beangle-jakarta-freemarker-2.3.31.jar check
+ er-qual-3.31.0.jar flyway-core-10.21.0.jar jackson-databind-2.15.2.jar 
+ freemarker-2.3.31.jar jackson-dataformat-toml-2.15.2.jar jackson-dataty
+ pe-jsr310-2.15.2.jar spring-core-6.2.0.jar spring-aop-5.0.0.RELEASE.jar
+  jackson-annotations-2.15.2.jar flyway-database-postgresql-10.21.0.jar 
+ commons-collections-3.2.1.jar
+

@@ -1,0 +1,238 @@
+package com.oris.lab05;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Objects;
+
+@WebServlet("*.thtml")
+public class TemplateHandlerServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String contextPath = request.getContextPath();
+        String pathInfo = request.getPathInfo();
+        String servletPath = request.getServletPath();
+
+        String templateFile = "template/index.thtml";
+        VelocityEngine velocityEngine = new VelocityEngine();
+        velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        velocityEngine.init();
+        VelocityContext context = new VelocityContext();
+//        Iterator<String> iter = request.getAttributeNames().asIterator();
+//
+//        InputStream inputStream = TemplateHandlerServlet.class.getClassLoader().getResourceAsStream(request.getServletPath());
+//        byte[] content = inputStream.readAllBytes();
+//        String contentTemplate = new String(content);
+//        while (iter.hasNext()) {
+//            String name = iter.next();
+//            if (contentTemplate.indexOf(name) >= 0) {
+//               // request.setAttribute(name, request.getAttribute(name));
+//              //  context.put(name, request.getAttribute(name));
+//            }
+//        }
+        context.put("title", "hi bitches");
+
+        Template template = velocityEngine.getTemplate(templateFile);
+        StringWriter writer = new StringWriter();
+        template.merge(context, writer);
+        String result = writer.toString();
+
+        System.out.println(request.getServletPath().substring(1));
+
+
+        System.out.println(request.getServletPath());
+        response.setContentType("text/html");
+        try {
+            response.getWriter().write(result);
+            response.flushBuffer();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //            byte[] content = inputStream.readAllBytes();
+//            String contentString = content.toString();
+        String newContent = "";
+//            byte[] content = "hello world".getBytes();
+
+//            String contentTemplate = new String(content);
+//            System.out.println(contentTemplate);
+
+
+//            Iterator<String> iter = request.getAttributeNames().asIterator();
+//            while (iter.hasNext()) {
+//                String name = iter.next();
+//                if (contentTemplate.indexOf(name)>=0){
+//                    request.setAttribute(name, request.getAttribute(name));
+//                }
+//            }
+//            PrintWriter out = response.getWriter();
+//            out.println("<html><body>");
+//            out.println("<h1>Hello, World!</h1>");
+//            out.println("</body></html>");
+//                String name = iter.next();
+//                if (contentTemplate.indexOf(name)>=0) {
+//                    System.out.println("AAAAAAAAAA"+i++);
+//                    String val = "${" + name + "}".strip();
+//                    System.out.println(val);
+//                    System.out.println(name);
+//                    String value = (String) request.getAttribute(name);
+//                    System.out.println(value);
+//                    System.out.println(request.getAttribute(name));
+//                    int len = val.length();
+//                    System.out.println(contentString.indexOf(val));
+//                    System.out.println(contentString.substring(0, contentString.indexOf(val)));
+//                    System.out.println(contentString.substring(contentString.indexOf(val) + len));
+//                    contentString = contentString.substring(0, contentString.indexOf(val)) + request.getAttribute(name) + contentString.substring(contentString.indexOf(val) + len);
+//                    System.out.println(newContent);
+//                }
+//            }
+//            while (iter.hasNext()) {
+//                String name = iter.next();
+//                String val = "${" +name + "}";
+//                System.out.println(val);
+//                System.out.println(request.getAttribute(name));
+//                int len = val.length();
+//                newContent = contentString.substring(contentString.indexOf(val)) + request.getAttribute(name) + contentString.substring(contentString.indexOf(val) + len);
+//                System.out.println(newContent);
+//                //System.out.println(entry.getKey() + "/" + entry.getValue());
+//            }
+        // System.out.println(contentTemplate);
+        // System.out.println(newContent);
+
+        // Заменить параметры значениями
+//            response.setStatus(HttpServletResponse.SC_OK);
+//            response.getWriter().write(contentString);
+//            response.getWriter().flush();
+
+
+    }
+
+}
+
+
+
+
+
+package com.oris.lab05;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Objects;
+
+@WebServlet("*.thtml")
+public class TemplateHandlerServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String contextPath = request.getContextPath();
+        String pathInfo = request.getPathInfo();
+        String servletPath = request.getServletPath();
+
+        String templateFile = "template/index.thtml";
+        VelocityEngine velocityEngine = new VelocityEngine();
+        velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        velocityEngine.init();
+        VelocityContext context = new VelocityContext();
+
+        context.put("title","hi bitches");
+
+        Template template = velocityEngine.getTemplate(templateFile);
+        StringWriter writer = new StringWriter();
+        template.merge(context, writer);
+        String result = writer.toString();
+
+        System.out.println(request.getServletPath().substring(1));
+
+        InputStream inputStream = TemplateHandlerServlet.class.getClassLoader().getResourceAsStream(request.getServletPath());
+        System.out.println(request.getServletPath());
+        response.setContentType("text/html");
+        response.getWriter().write(result);
+        response.flushBuffer();
+        try {
+            byte[] content = inputStream.readAllBytes();
+            String contentString = content.toString();
+            String newContent = "";
+//            byte[] content = "hello world".getBytes();
+
+            String contentTemplate = new String(content);
+            System.out.println(contentTemplate);
+
+
+//            Iterator<String> iter = request.getAttributeNames().asIterator();
+//            while (iter.hasNext()) {
+//                String name = iter.next();
+//                if (contentTemplate.indexOf(name)>=0){
+//                    request.setAttribute(name, request.getAttribute(name));
+//                }
+//            }
+//            PrintWriter out = response.getWriter();
+//            out.println("<html><body>");
+//            out.println("<h1>Hello, World!</h1>");
+//            out.println("</body></html>");
+//                String name = iter.next();
+//                if (contentTemplate.indexOf(name)>=0) {
+//                    System.out.println("AAAAAAAAAA"+i++);
+//                    String val = "${" + name + "}".strip();
+//                    System.out.println(val);
+//                    System.out.println(name);
+//                    String value = (String) request.getAttribute(name);
+//                    System.out.println(value);
+//                    System.out.println(request.getAttribute(name));
+//                    int len = val.length();
+//                    System.out.println(contentString.indexOf(val));
+//                    System.out.println(contentString.substring(0, contentString.indexOf(val)));
+//                    System.out.println(contentString.substring(contentString.indexOf(val) + len));
+//                    contentString = contentString.substring(0, contentString.indexOf(val)) + request.getAttribute(name) + contentString.substring(contentString.indexOf(val) + len);
+//                    System.out.println(newContent);
+//                }
+//            }
+//            while (iter.hasNext()) {
+//                String name = iter.next();
+//                String val = "${" +name + "}";
+//                System.out.println(val);
+//                System.out.println(request.getAttribute(name));
+//                int len = val.length();
+//                newContent = contentString.substring(contentString.indexOf(val)) + request.getAttribute(name) + contentString.substring(contentString.indexOf(val) + len);
+//                System.out.println(newContent);
+//                //System.out.println(entry.getKey() + "/" + entry.getValue());
+//            }
+            // System.out.println(contentTemplate);
+            System.out.println(newContent);
+
+            // Заменить параметры значениями
+//            response.setStatus(HttpServletResponse.SC_OK);
+//            response.getWriter().write(contentString);
+//            response.getWriter().flush();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+}
