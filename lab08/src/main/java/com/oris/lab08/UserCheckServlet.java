@@ -1,5 +1,6 @@
 package com.oris.lab08;
 
+import com.oris.lab08.bcrypt.BCryptService;
 import com.oris.lab08.listener.Lab08ContextListener;
 import com.oris.lab08.model.User;
 import jakarta.servlet.RequestDispatcher;
@@ -21,14 +22,15 @@ import java.util.UUID;
 @WebServlet("/usercheck")
 public class UserCheckServlet extends HttpServlet {
     final static Logger logger = LogManager.getLogger(UserCheckServlet.class);
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println(username+ ' '+password);
+        System.out.println(username + ' ' + password);
         if (validate(username, password)) {
             User user = getUser(username, password);
             HttpSession session = request.getSession();
-            if (session.getAttribute("uuid") == null  || !checkUUID((String) session.getAttribute("uuid"))) {
+            if (session.getAttribute("uuid") == null || !checkUUID((String) session.getAttribute("uuid"))) {
                 UUID uuid = UUID.randomUUID();
                 session.setAttribute("uuid", uuid.toString());
                 session.setAttribute("username", username);
@@ -49,10 +51,11 @@ public class UserCheckServlet extends HttpServlet {
         ServletContext ctx = getServletContext();
         List<User> users = (List<User>) ctx.getAttribute("users");
         BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+        BCryptService bCryptService = new BCryptService();
         for (User user : users) {
             System.out.println(user.getUsername());
             System.out.println(user.getPassword());
-            if (user.getUsername().equals(username) && bCrypt.matches(password, user.getPassword())) {
+            if (user.getUsername().equals(username) && bCryptService.checkPassword(user.getPassword(), password)) {
                 return user;
             }
         }

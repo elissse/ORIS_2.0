@@ -1,4 +1,5 @@
-package com.oris.lab08.bcrypt;
+package com.oris.lab09.bcrypt;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -13,7 +14,7 @@ public class BCryptService {
         return BCrypt.hashpw(password, salt);
     }
 
-    public boolean checkPassword(String hashedAndSaltedPassword, String password) {
+    public boolean checkPassword(String hashedAndSaltedPassword, String password, String salt) {
         return BCrypt.checkpw(password, hashedAndSaltedPassword);
     }
 }
