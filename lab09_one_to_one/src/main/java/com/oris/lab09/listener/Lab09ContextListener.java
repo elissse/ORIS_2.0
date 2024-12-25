@@ -18,6 +18,7 @@ public class Lab09ContextListener implements ServletContextListener {
     final static Logger logger = LogManager.getLogger(Lab09ContextListener.class);
 
     public void contextInitialized(ServletContextEvent sce) {
+
         logger.info("start migration config");
         Flyway flyway = Flyway.configure().baselineOnMigrate(true).dataSource(URL, USER, PASSWORD).load();
         logger.info("start migration");
@@ -26,6 +27,5 @@ public class Lab09ContextListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
-        DbWork.getInstance().destroy();
     }
 }

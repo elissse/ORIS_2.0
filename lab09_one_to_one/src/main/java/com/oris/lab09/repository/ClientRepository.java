@@ -15,14 +15,13 @@ import java.util.List;
 public class ClientRepository {
 
     final static Logger logger = LogManager.getLogger(ClientRepository.class);
-
-    private final DbWork db = DbWork.getInstance();
+    //private final DbWork db = DbWork.getInstance();
 
 
     public Client findById(Long id) {
         Connection connection = null;
         try {
-            connection = db.getConnection();
+            connection = DbWork.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM client, client_info WHERE client_info.id = client.id AND client.id = ?");
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -37,7 +36,7 @@ public class ClientRepository {
         Connection connection = null;
         List<Client> clients = new ArrayList<>();
         try {
-            connection = db.getConnection();
+            connection = DbWork.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM client, client_info WHERE client_info.id = client.id");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -52,7 +51,7 @@ public class ClientRepository {
 
     public Client addClient(Client client) {
         try {
-            Connection connection = db.getConnection();
+            Connection connection = DbWork.getConnection();
             Long id = null;
             PreparedStatement statement = connection.prepareStatement("select nextval('client_seq')");
             ResultSet resultSet = statement.executeQuery();
@@ -77,7 +76,6 @@ public class ClientRepository {
                     statement.executeUpdate();
                 }
                 statement.close();
-                db.releaseConnection(connection);
             }
         } catch (SQLException e) {
             e.printStackTrace();

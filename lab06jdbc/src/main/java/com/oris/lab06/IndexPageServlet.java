@@ -25,14 +25,6 @@ public class IndexPageServlet extends HttpServlet {
 
         try {
             response.setContentType("text/html;charset=UTF-8");
-            Writer writer = response.getWriter();
-
-//            Connection connection =
-//                    DriverManager.getConnection(
-//                            // адрес БД , имя пользователя, пароль
-//                            "jdbc:postgresql://localhost:5432/agona_db", "elise", "superuser");
-
-            System.out.println("all good");
             ServletContext ctx = getServletContext();
             List<User> users = (List<User>) ctx.getAttribute("users");
             request.setAttribute("users", users);
