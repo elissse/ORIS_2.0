@@ -19,6 +19,7 @@
         <module>lab09_one_to_one</module>
         <module>lab11_swing</module>
         <module>lab10_pagination</module>
+        <module>lab12_rest_client</module>
 
     </modules>
 
