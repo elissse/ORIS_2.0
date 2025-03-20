@@ -16,14 +16,11 @@ public class MainFrame extends JFrame {
         setLayout(new FlowLayout());
         setSize(400, 400);
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         // Получаем список всех месяцев через сервис, и создаем модель данных для списка
         ListModel monthListModel = null;
         try {
             monthListModel = new MonthElementListModel(service.findAll());
             System.out.println(service.findById(4L));
-            System.out.println(service.save(new Month(0L,"sleepember", "falling")));
 
         } catch (Exception e) {
             e.printStackTrace();
