@@ -22,6 +22,10 @@
         <module>lab12_rest_client</module>
         <module>lab2_01_di_context</module>
         <module>lab2_02_embeded_tomcat</module>
+        <module>lab2_03_spring_context</module>
+        <module>la2_03_spring_context_tomcat</module>
+        <module>lab2_04_mvc</module>
+        <module>lab2_04_entity_manager</module>
 
     </modules>
 
