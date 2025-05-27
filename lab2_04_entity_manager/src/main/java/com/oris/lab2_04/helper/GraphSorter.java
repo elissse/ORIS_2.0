@@ -13,7 +13,7 @@ public class GraphSorter {
         for (Class<?> clazz : entityClasses) {
             List<Class<?>> dependencies = DependencyResolver.getDependencies(clazz);
             for (Class<?> dep : dependencies) {
-                graph.get(dep).add(clazz); // Зависимость: dep -> clazz
+                graph.get(dep).add(clazz);
                 inDegree.put(clazz, inDegree.getOrDefault(clazz, 0) + 1);
             }
         }

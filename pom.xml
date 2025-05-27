@@ -26,6 +26,7 @@
         <module>la2_03_spring_context_tomcat</module>
         <module>lab2_04_mvc</module>
         <module>lab2_04_entity_manager</module>
+        <module>lab2_05_jpa</module>
 
     </modules>
 
